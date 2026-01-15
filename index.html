@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffeef2;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+
+        /* Success Message Styling */
+        #success-message {
+            display: none;
+        }
+
+        .heart {
+            color: #ff4d6d;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="valentine-question">
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpwa3pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2Z6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/c7p0L1gT7Vl6WvjF6j/giphy.gif" alt="Cute Bear">
+            </div>
+            <h1>Will you be my Valentine?</h1>
+            <div class="buttons">
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
+
+        <div id="success-message">
+            <h1 style="font-size: 3rem;">YAY! See you on the 14th! ❤️</h1>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpwa3pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2pwa2Z6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v6aOjy0VeWlE8Vzsz0/giphy.gif" alt="Happy Dance" style="max-width: 200px;">
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const questionSection = document.getElementById('valentine-question');
+        const successMessage = document.getElementById('success-message');
+
+        // Function to move the "No" button
+        const moveButton = () => {
+            // Get random position within the viewport
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        };
+
+        // For Desktop (Mouse)
+        noBtn.addEventListener('mouseover', moveButton);
+
+        // For Mobile (Touch)
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevents clicking
+            moveButton();
+        });
+
+        // When "Yes" is clicked
+        yesBtn.addEventListener('click', () => {
+            questionSection.style.display = 'none';
+            successMessage.style.display = 'block';
+            confetti(); // Optional: Trigger effects
+        });
+    </script>
+</body>
+</html>
